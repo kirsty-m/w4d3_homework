@@ -9,7 +9,7 @@ def select_all():
     sql = "SELECT * FROM books"
     results = run_sql(sql)
 
-    for row in result:
+    for row in results:
         author = author_repository.select(row['author_id'])
         book = Book(row['title'], row['genre'], author, row['id'])
         books.append(book)
@@ -47,5 +47,5 @@ def update(book):
     sql = "UPDATE books SET (title, genre, author_id) = (%s, %s, %s) WHERE id = %s"
     values = [book.title, book.genre, book.author.id, book.id]
     run_sql(sql, values)
-    
+
 
